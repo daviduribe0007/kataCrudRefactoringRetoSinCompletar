@@ -10,16 +10,7 @@ public class TodoDTO {
     @GeneratedValue
     private Long id;
     private String name;
-    private boolean completed;
-    private String groupListId;
 
-    public String getGroupListId() {
-        return groupListId;
-    }
-
-    public void setGroupListId(String groupListId) {
-        this.groupListId = groupListId;
-    }
 
     public Long getId() {
         return id;
@@ -37,11 +28,4 @@ public class TodoDTO {
         this.name = name;
     }
 
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
 }
