@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class TodoController {
 
     @Autowired
-    private TodoService service;
+    private TodoDTA service;
 
     @GetMapping(value = "api/todos")
     public Iterable<TodoDTO> list(){
