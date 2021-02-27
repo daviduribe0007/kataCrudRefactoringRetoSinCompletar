@@ -1,5 +1,7 @@
 package co.com.sofka.crud;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +11,7 @@ public class TodoDTO {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String name;
 
     public Long getId() {
