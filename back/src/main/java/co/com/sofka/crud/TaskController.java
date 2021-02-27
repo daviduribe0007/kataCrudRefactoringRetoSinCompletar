@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
-
     @Autowired
     private TaskDTA service;
 

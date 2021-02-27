@@ -1,5 +1,6 @@
 package co.com.sofka.crud;
 
+
 public class TaskDTO {
 
     private Long id;
