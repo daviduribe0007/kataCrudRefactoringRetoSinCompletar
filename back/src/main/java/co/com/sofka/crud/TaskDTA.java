@@ -4,24 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TodoDTA {
+public class TaskDTA {
 
     @Autowired
-    private TodoRepository repository;
+    private TaskRepository repository;
 
-    public Iterable<TodoDTO> list() {
+    public Iterable<TaskDTO> list() {
         return repository.findAll();
     }
 
-    public TodoDTO save(TodoDTO todoDTO) {
-        return repository.save(todoDTO);
+    public TaskDTO save(TaskDTO taskDTO) {
+        return repository.save(taskDTO);
     }
 
     public void delete(Long id) {
         repository.delete(get(id));
     }
 
-    public TodoDTO get(Long id) {
+    public TaskDTO get(Long id) {
         return repository.findById(id).orElseThrow();
     }
 
