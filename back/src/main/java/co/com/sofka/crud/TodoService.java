@@ -9,19 +9,19 @@ public class TodoService {
     @Autowired
     private TodoRepository repository;
 
-    public Iterable<Todo> list(){
+    public Iterable<TodoDTO> list(){
         return repository.findAll();
     }
 
-    public Todo save(Todo todo){
-        return repository.save(todo);
+    public TodoDTO save(TodoDTO todoDTO){
+        return repository.save(todoDTO);
     }
 
     public void delete(Long id){
         repository.delete(get(id));
     }
 
-    public Todo get(Long id){
+    public TodoDTO get(Long id){
          return repository.findById(id).orElseThrow();
     }
 
