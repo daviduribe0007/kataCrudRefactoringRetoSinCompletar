@@ -1,6 +1,7 @@
 package co.com.sofka.crud;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +29,8 @@ public class TodoController {
     }
 
     @PutMapping(value = "todo/put")
-    public TodoDTO update(@RequestBody TodoDTO todoDTO) {
-        if (todoDTO.getId() != null) {
+    public TodoDTO update(@Validated @RequestBody TodoDTO todoDTO) {
+        if (todoDTO.getId() != null && !todoDTO.getName().isEmpty()) {
             return service.save(todoDTO);
         }
         throw new RuntimeException("No existe el id para actualziar");
@@ -44,5 +45,7 @@ public class TodoController {
     public TodoDTO get(@PathVariable("id") Long id) {
         return service.get(id);
     }
+
+
 
 }
