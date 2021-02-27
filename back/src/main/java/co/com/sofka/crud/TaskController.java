@@ -1,6 +1,7 @@
 package co.com.sofka.crud;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,26 +24,32 @@ public class TaskController {
     }
 
     @PostMapping(value = "task/post")
-    public TaskDTO save(@RequestBody TaskDTO taskDTO) {
+    public TaskDTO save(@Validated @RequestBody TaskDTO taskDTO) {
         return service.save(taskDTO);
     }
 
     @PutMapping(value = "task/put")
-    public TaskDTO update(@RequestBody TaskDTO tasDTO) {
+    public TaskDTO update(@Validated @RequestBody TaskDTO tasDTO) {
         if (tasDTO.getId() != null) {
             return service.save(tasDTO);
         }
-        throw new RuntimeException("No existe el id para actualziar");
+        throw new RuntimeException("The id not exist to update");
     }
 
     @DeleteMapping(value = "task/{id}/delete")
     public void delete(@PathVariable("id") Long id) {
-        service.delete(id);
+        if (id != null) {
+            service.delete(id);
+        }
+        throw new RuntimeException("The id not exist to delete");
     }
 
     @GetMapping(value = "task/{id}/get")
     public TaskDTO get(@PathVariable("id") Long id) {
-        return service.get(id);
+        if (id != null) {
+            return service.get(id);
+        }
+        throw new RuntimeException("The id not exist");
     }
 
 }

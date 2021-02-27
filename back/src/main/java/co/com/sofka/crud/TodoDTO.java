@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -13,6 +14,7 @@ public class TodoDTO {
     @GeneratedValue
     private Long id;
     @NotNull
+    @NotBlank(message = "Name can't be empty")
     private String name;
 
     public Long getId() {

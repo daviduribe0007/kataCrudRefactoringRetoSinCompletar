@@ -24,28 +24,50 @@ public class TodoController {
     }
 
     @PostMapping(value = "todo/post")
-    public TodoDTO save(@RequestBody TodoDTO todoDTO) {
+    public TodoDTO save(@Validated @RequestBody TodoDTO todoDTO) {
         return service.save(todoDTO);
     }
 
     @PutMapping(value = "todo/put")
     public TodoDTO update(@Validated @RequestBody TodoDTO todoDTO) {
-        if (todoDTO.getId() != null && !todoDTO.getName().isEmpty()) {
+        if (todoDTO.getId() != null) {
             return service.save(todoDTO);
         }
-        throw new RuntimeException("No existe el id para actualziar");
+        throw new RuntimeException("The id not exist to update");
+
+        /*
+        * public Todo save(Todo todo){
+        try {
+            validateLength(todo);
+        }catch (RuntimeException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,exception.getMessage());
+        }
+        return repository.save(todo);
+    }
+
+    private void validateLength(Todo todo) {
+        if(todo.getName().length()<3 || todo.getName().length()>100){
+            throw new IllegalArgumentException("Se permiten caracteres de 3 hasta 100");
+        }
+    }
+        * */
+
     }
 
     @DeleteMapping(value = "todo/{id}/delete")
     public void delete(@PathVariable("id") Long id) {
-        service.delete(id);
+        if (id != null) {
+            service.delete(id);
+        }
+        throw new RuntimeException("The id not exist to delete");
     }
 
     @GetMapping(value = "todo/{id}/get")
     public TodoDTO get(@PathVariable("id") Long id) {
-        return service.get(id);
+        if (id != null) {
+            return service.get(id);
+        }
+        throw new RuntimeException("The id not exist");
     }
-
-
 
 }
